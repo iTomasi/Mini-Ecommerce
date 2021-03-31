@@ -1,0 +1,17 @@
+.product {
+    
+    img {
+        width: 100%;
+        background: #eeeeee;
+        border-radius: 5px;
+    }
+
+    .product__name {
+        margin: 10px 0;
+        font-weight: 100;
+    }
+
+    .product__price {
+        font-weight: 750
+    }
+}

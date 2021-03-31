@@ -1,0 +1,20 @@
+header {
+
+    border-bottom: 2px solid #000;
+
+    .iw_header {
+        
+        display: flex;
+        justify-content: space-between;
+        font-size: 20px;
+        height: 55px;
+        align-items: center;
+        width: 95%;
+        margin: auto;
+    
+        i {
+            cursor: pointer;
+            font-size: 24px;
+        }
+    }
+}

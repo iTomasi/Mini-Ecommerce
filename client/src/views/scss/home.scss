@@ -1,0 +1,19 @@
+.content {
+    width: 95%;
+    margin: 30px auto;
+
+    .products {
+        display: grid;
+        grid-template-columns: repeat(2, 140px);
+        justify-content: center;
+        gap: 20px;
+    }
+}
+
+@media screen and (max-width: 330px) {
+    .content {
+        .products {
+            grid-template-columns: 140px;
+        }
+    }
+}
