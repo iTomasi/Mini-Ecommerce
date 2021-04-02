@@ -4,3 +4,12 @@
   box-sizing: border-box;
   font-family: sans-serif;
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 1000px;
+}

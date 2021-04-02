@@ -1,4 +1,6 @@
 .product {
+    transition-property: transform;
+    transition-duration: 0.3s;
     
     img {
         width: 100%;
@@ -13,5 +15,20 @@
 
     .product__price {
         font-weight: 750
+    }
+}
+
+.product:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+    transition-property: transform;
+    transition-duration: 0.3s;
+}
+
+@media screen and (min-width: 1050px) {
+    .product {
+        img {
+            height: 100px;
+        }
     }
 }

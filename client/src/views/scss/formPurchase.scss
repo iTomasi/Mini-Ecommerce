@@ -1,0 +1,89 @@
+.iw_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #000;
+    width: 95%;
+    margin: 30px auto;
+    text-align: center;
+    padding: 20px 0;
+
+    .formSection {
+        width: 100%;
+        margin-bottom: 20px;
+        label {
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        input, select {
+            background: transparent;
+            border: 1px solid #000;
+            outline: none;
+            padding: 5px;
+            font-size: 15px;
+            width: 80%;
+        }
+    }
+
+    .formFlex {
+        display: flex;
+        justify-content: space-evenly;
+        margin-bottom: 20px;
+
+        .MMYY, .CVC {
+            width: 45%;
+
+            input {
+                width: 100%;
+                font-size: 15px;
+                padding: 5px;
+                border: 1px solid #000;
+                background: transparent;
+                margin-top: 15px;
+            }
+        }
+    }
+
+    button[type="submit"] {
+        background: #2ecc71;
+        width: 70%;
+        min-height: 33px;
+        font-size: 18px;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+}
+
+@media screen and (min-width: 850px) {
+    .iw_form {
+        font-size: 20px;
+        
+        .formSection {
+            input, select {
+                font-size: 20px;
+            }
+        }
+
+        .formFlex {
+            .MMYY, .CVC {
+                input {
+                    font-size: 20px;
+                }
+            }
+        }
+
+        button[type="submit"] {
+            font-size: 20px;
+            min-height: 35px;
+        }
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    .iw_form {
+        width: 950px;
+    }
+}

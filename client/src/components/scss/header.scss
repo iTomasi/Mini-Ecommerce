@@ -1,4 +1,4 @@
-header {
+.header-MS {
 
     border-bottom: 2px solid #000;
 
@@ -11,10 +11,104 @@ header {
         align-items: center;
         width: 95%;
         margin: auto;
-    
+
         i {
             cursor: pointer;
             font-size: 24px;
+            padding: 3px;
+        }
+
+        nav {
+            position: fixed;
+            background: rgba(0, 0, 0, 0.5);
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 10000;
+
+            .iw_header__nav-ul {
+                background: #f9f9f9;
+                width: 40%;
+                position: absolute;
+                top: 57px;
+                left: 0;
+
+                a {
+                    display: block;
+                    padding: 10px 0;
+                    text-decoration: none;
+                    color: #000000;
+
+                    i {
+                        font-size: 20px;
+                        margin: 0 5px;
+                    }
+                }
+            }
+        }
+
+        .iw_header__right {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            input {
+                background: transparent;
+                border: 2px solid #000000;
+                outline: none;
+                font-size: 20px;
+                width: 70%;
+                margin-right: 5px;
+                padding: 3px 4px;
+                transform: scale(0);
+                transition-property: transform;
+                transition-duration: 0.3s;
+            }
+
+            input:focus {
+                transform: scale(1)
+            }
+        }
+    
+        
+    }
+}
+
+.header-DK {
+    display: flex;
+    border-bottom: 2px solid #000000;
+    align-items: center;
+    text-align: center;
+    font-size: 20px;
+
+    .iw_header__left,
+    .iw_header__right {width: 25%;}
+    nav {
+        width: 50%;
+
+        ul {
+            display: flex;
+            justify-content: space-evenly;
+
+            a {
+                display: block;
+                padding: 20px 0;
+                text-decoration: none;
+                color: #000000;
+            }
         }
     }
+
+    .iw_header__right {
+        input {
+            background: transparent;
+            padding: 5px;
+            font-size: 20px;
+            border: 2px solid #000000;
+            outline: none;
+            max-width: 200px;
+        }
+    }
+
 }

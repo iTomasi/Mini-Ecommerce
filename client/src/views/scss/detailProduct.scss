@@ -1,0 +1,111 @@
+.productDetail {
+    margin-top: 30px;
+
+    .productDetail__product {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: #dddddd;
+        width: 90%;
+        margin: auto;
+        padding: 10px 0;
+
+        .img {
+            width: 250px;
+            margin-bottom: 20px;
+            img {
+                width: 100%;
+            }
+        }
+
+        .details {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 80%;
+
+            .quantity {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 120px;
+                font-size: 20px;
+                margin-top: 20px;
+
+                button {
+                    border: none;
+                    outline: none;
+                    font-size: 33px;
+                    height: 35px;
+                    width: 40px;
+                    cursor: pointer;
+                }
+
+                .btnPlus {
+                    background: #2ecc71
+                }
+
+                .btnMinus {
+                    background: #e74c3c;
+                }
+            }
+
+            .purchaseBtn {
+                margin-top: 20px;
+                background: #2ecc71;
+                font-size: 20px;
+                min-height: 35px;
+                width: 70%;
+                border: none;
+                outline: none;
+                cursor: pointer;
+
+                i {
+                    margin-right: 5px;
+                }
+            }
+
+            .purchaseBtn:hover {
+                background: #27ae60;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 450px) {
+    .productDetail {
+        .productDetail__product {
+            .img {
+                width: 350px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 750px) {
+    .productDetail {
+        .productDetail__product {
+            .img {
+                width: 400px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 850px) {
+    .productDetail {
+        .productDetail__product {
+            flex-direction: row;
+            align-items: unset;
+            max-width: 900px;
+            padding: 10px;
+
+            .img, .details {width: 50%}
+
+            .details {
+                text-align: center;
+            }
+        }
+    }
+}

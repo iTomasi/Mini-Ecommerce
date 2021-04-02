@@ -1,0 +1,7 @@
+CREATE TABLE inventory (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    price DECIMAL(13,2) NOT NULL,
+    quantity INT NOT NULL,
+    theimg TEXT NOT NULL
+);

@@ -6,7 +6,7 @@
         display: grid;
         grid-template-columns: repeat(2, 140px);
         justify-content: center;
-        gap: 20px;
+        gap: 55px 20px;
     }
 }
 
@@ -14,6 +14,31 @@
     .content {
         .products {
             grid-template-columns: 140px;
+        }
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .content {
+        .products {
+            grid-template-columns: repeat(3, 170px);
+        }
+    }
+}
+
+@media screen and (min-width: 850px) {
+    .content {
+        .products {
+            grid-template-columns: repeat(4, 180px)
+        }
+    }
+}
+
+@media screen and (min-width: 1050px) {
+    .content {
+        .products {
+            grid-template-columns: repeat(4, 200px);
+            gap: 55px 50px;
         }
     }
 }

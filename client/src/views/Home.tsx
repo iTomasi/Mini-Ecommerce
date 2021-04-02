@@ -4,24 +4,19 @@ import "./scss/home.scss";
 // Component
 import Product from "../components/Product";
 
-const Home = () => {
+interface IHomeProps {
+    inventory: any[]
+}
+
+const Home = ({inventory}: IHomeProps) => {
+
     return (
         <div className="content">
-            <div className="products">
-                <Product img={"nike-shoes-green.png"} name={"Nike Green"} price={4000} />
-                <Product img={"nike-shoes-green.png"} name={"Nike Green"} price={4000} />
-                <Product img={"nike-shoes-green.png"} name={"Nike Green"} price={4000} />
-                <Product img={"nike-shoes-green.png"} name={"Nike Green"} price={4000} />
-                <Product img={"nike-shoes-green.png"} name={"Nike Green"} price={4000} />
-                <Product img={"nike-shoes-green.png"} name={"Nike Green"} price={4000} />
-                <Product img={"nike-shoes-green.png"} name={"Nike Green"} price={4000} />
-                <Product img={"nike-shoes-green.png"} name={"Nike Green"} price={4000} />
-                <Product img={"nike-shoes-green.png"} name={"Nike Green"} price={4000} />
-                <Product img={"nike-shoes-green.png"} name={"Nike Green"} price={4000} />
-                <Product img={"nike-shoes-green.png"} name={"Nike Green"} price={4000} />
-                <Product img={"nike-shoes-green.png"} name={"Nike Green"} price={4000} />
-
-            </div>
+            <div className="products">{
+                inventory.map((inventory: any) => (
+                    <Product id={inventory.id} name={inventory.name} price={inventory.price} img={inventory.theimg} />
+                ))
+            }</div>
         </div>
     )
 }
