@@ -74,6 +74,30 @@ router.post("/validating-cart", (req, res) => {
 
         res.json({message: "Congratz"})
     })
+});
+
+router.post("/purchasing-products", (req, res) => {
+    const {userDatas, products} = req.body;
+
+    if (!userDatas || !products) return res.json({message: "OlaXd?"})
+    let newArray_Saving: any = [];
+
+    connection.query("SELECT * FROM inventory", (err, resp) => {
+        if (err) return console.log(err)
+
+        for (let i = 0; i < products.length; i++) {
+            const checkingProducts = resp.filter((element: any) => element.id === products[i].id)
+
+            if (checkingProducts[0].name !== products[i].name) return res.json({message: "Product name are not equal"});
+            else if (checkingProducts[0].price !== products[i].price) return res.json({message: "Product price are not equal"});
+            else if (products[i].quantity > checkingProducts[0].quantity) return res.json({message: "We dont have more this item en our inventory"})
+
+            newArray_Saving = [...newArray_Saving, products[i]]
+        }
+
+        console.log("OLA PASO FELICIADES");
+        console.log(newArray_Saving);
+    })
 })
 
 export default router;

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import {useParams, useHistory} from "react-router-dom";
 import Axios from "axios";
 import hosting from "../config/hosting";
+import Notification from "../components/Notification";
 import "./scss/detailProduct.scss";
 
 interface IProductInfo {
@@ -74,6 +75,7 @@ const DetailProduct = () => {
     }
 
     return (
+        <>
         <div className="productDetail">{
             productInfo.message === "product found" ?
             <div className="productDetail__product">
@@ -100,6 +102,7 @@ const DetailProduct = () => {
              :
             <h1>Q a pasao</h1>
         }</div>
+        </>
     )
 }
 

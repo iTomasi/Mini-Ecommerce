@@ -1,0 +1,17 @@
+.notification {
+    position: fixed;
+    max-width: 200px;
+    top: 60px;
+    left: -500px;
+    padding: 10px 5px;
+    border-radius: 5px;
+    font-size: 17px;
+}
+
+.notification__error {
+    background: #e74c3c
+}
+
+.notification.active {
+    left: 10px;
+}

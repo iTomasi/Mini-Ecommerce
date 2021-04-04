@@ -4,15 +4,28 @@ import DK_CARTPRODUCT from "../components/DK_CARTPRODUCT";
 import MS_CARDPRODUCT from "../components/MS_CARDPRODUCT";
 import hosting from "../config/hosting";
 import Axios from "axios";
+import Notification from "../components/Notification";
 import "./scss/cart.scss";
+
+interface INotification {
+    type: string,
+    msg: string,
+    addActive: boolean
+}
 
 
 const Cart = () => {
     const history = useHistory();
+    let notification_Timeout: any;
 
     const [checkWidthUser, setCheckWidthUser] = useState(true);
     const [userProductsList, setUserProductList] = useState<any[]>([]);
     const [totalPrice, setTotalPrice] = useState<number>(0);
+    const [notification, setNotification] = useState<INotification>({
+        type: "",
+        msg: "",
+        addActive: false
+    })
 
     useEffect(() => {
         const checkingWidth = () => {
@@ -74,15 +87,29 @@ const Cart = () => {
             headers: {"Content-Type": "application/json"}
         })
             .then(res => {
-                if (res.data.message !== "Congratz") return console.log(res.data);
+                if (res.data.message !== "Congratz") return showNotification("error", `${res.data.message}: ${res.data.product}`)
 
                 history.push("/purchasing-form")
 
             })
     }
 
+    const showNotification = (type: string, msg: string) => {
+
+        if (notification_Timeout !== undefined) clearTimeout(notification_Timeout);
+
+        setNotification((prev: any) => ({...prev, addActive: true, type, msg}))
+
+        notification_Timeout = setTimeout(() => {
+            setNotification((prev: any) => ({...prev, addActive: false}))
+        }, 3000)
+
+    }
+
     const DK_CART = () => {
         return (
+            <>
+            <Notification type={notification.type} msg={notification.msg} addActive={notification.addActive} />
             <form className="cart-DK">
                 <div className="table">
                     <div className="table__info" style={{display: "flex", alignItems: "center", background: "#1f2833", padding: "10px 0"}}>
@@ -110,11 +137,14 @@ const Cart = () => {
                     </div>
                 </div>
             </form>
+            </>
         )
     }
 
     const MS_CART = () => {
         return (
+            <>
+            <Notification type={notification.type} msg={notification.msg} addActive={notification.addActive} />
             <div className="cart-MS">
                 <div className="table__products">{
                     userProductsList.map((element: any) => (
@@ -127,6 +157,7 @@ const Cart = () => {
                     <button type="button" onClick={purchaseBtnEvent}>Purchase</button>
                 </div>
             </div>
+            </>
         )
     }
 

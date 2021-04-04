@@ -26,6 +26,7 @@ const App = () => {
 
   const [inventoryList, setInventoryList] = useState<IInventory[]>([]);
 
+
   useEffect(() => {
     Axios.get(hosting.localHost_Server)
       .then(res => {
