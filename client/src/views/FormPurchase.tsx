@@ -1,9 +1,19 @@
 import React, {useState, useEffect} from "react";
+import {useHistory} from "react-router-dom";
 import hosting from "../config/hosting";
 import Axios from "axios";
+import Notification from "../components/Notification";
 import "./scss/formPurchase.scss";
 
+interface INotification {
+    type: string,
+    msg: string,
+    addActive: boolean
+}
+
 const FormPurchase = () => {
+    const history = useHistory();
+    let notification_Timeout: any;
 
     const [countryList, setCountryList] = useState<any[]>([]);
     const [userName, setUserName] = useState<string>("");
@@ -14,6 +24,11 @@ const FormPurchase = () => {
     const [userCard_CVC, setUserCard_CVC] = useState<string>("");
     const [totalPrice, setTotalPrice] = useState<number>(0);
     const [showConfirmDatas, setShowConfirmDatas] = useState<boolean>(false);
+    const [notification, setNotification] = useState<INotification>({
+        type: "",
+        msg: "",
+        addActive: false
+    })
 
 
     useEffect(() => {
@@ -53,9 +68,9 @@ const FormPurchase = () => {
     }
 
     const checkingForm = () => {
-        if (userName === "") return console.log("Full Name Missing");
-        else if (userCountry === "") return console.log("Country Missing");
-        else if (userHomeAddress === "") return console.log("Home Address Missing");
+        if (userName === "") return showNotification("error", "Full Name Missing")
+        else if (userCountry === "") return showNotification("error", "Country Missing")
+        else if (userHomeAddress === "") return showNotification("error", "Home Address Missing")
 
         setShowConfirmDatas(true)
     }
@@ -75,12 +90,31 @@ const FormPurchase = () => {
             headers: {"Content-Type": "application/json"}
         })
             .then(res => {
-                console.log(res.data)
+                if (res.data.message !== "Purchase made satisfactorily.") return showNotification("error", res.data.message);
+
+                showNotification("success", res.data.message);
+
+                setTimeout(() => {
+                    localStorage.removeItem("myproducts");
+                    history.push("/")
+                }, 3000)
             })
 
     }
+
+    const showNotification = (type: string, msg: string) => {
+        if (notification_Timeout !== undefined) clearTimeout(notification_Timeout);
+
+        setNotification((prev: any) => ({...prev, addActive: true, msg, type}));
+
+        notification_Timeout = setTimeout(() => {
+            setNotification((prev: any) => ({...prev, addActive: false}))
+        }, 3000)
+    }
     
     return (
+        <>
+        <Notification type={notification.type} msg={notification.msg} addActive={notification.addActive}/>
         <form className="iw_form" onSubmit={purchasingProducts}>
             <div className="formSection">
                 <label>Full Name</label>
@@ -134,6 +168,7 @@ const FormPurchase = () => {
                 </div>
             </div>
         </form>
+        </>
     )
 }
 

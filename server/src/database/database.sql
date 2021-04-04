@@ -5,3 +5,11 @@ CREATE TABLE inventory (
     quantity INT NOT NULL,
     theimg TEXT NOT NULL
 );
+
+CREATE TABLE orderlist (
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    full_name VARCHAR(100) NOT NULL,
+    country VARCHAR(100) NOT NULL,
+    home_address VARCHAR(100) NOT NULL,
+    products TEXT NOT NULL
+);

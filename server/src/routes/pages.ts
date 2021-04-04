@@ -78,6 +78,7 @@ router.post("/validating-cart", (req, res) => {
 
 router.post("/purchasing-products", (req, res) => {
     const {userDatas, products} = req.body;
+    let validation = true;
 
     if (!userDatas || !products) return res.json({message: "OlaXd?"})
     let newArray_Saving: any = [];
@@ -92,11 +93,36 @@ router.post("/purchasing-products", (req, res) => {
             else if (checkingProducts[0].price !== products[i].price) return res.json({message: "Product price are not equal"});
             else if (products[i].quantity > checkingProducts[0].quantity) return res.json({message: "We dont have more this item en our inventory"})
 
-            newArray_Saving = [...newArray_Saving, products[i]]
+            newArray_Saving = [...newArray_Saving, {
+                product_id: products[i].id,
+                name: products[i].name,
+                quantity: products[i].quantity
+            }]
         }
 
-        console.log("OLA PASO FELICIADES");
-        console.log(newArray_Saving);
+        connection.query("INSERT INTO orderlist (full_name, country, home_address, products) VALUE (?,?,?,?)", [userDatas.full_Name, userDatas.country, userDatas.home_Address, JSON.stringify(newArray_Saving)], (err, resp) => {
+            if (err) return console.log(err)
+
+            for (let i = 0; i < newArray_Saving.length; i++) {
+
+                connection.query("SELECT * FROM inventory WHERE id = ?", [newArray_Saving[i].product_id], (err, resp) => {
+                    if (err) return console.log(err)
+
+                    if (resp[0].quantity - newArray_Saving[i].quantity <= 0) {
+                        validation = false;
+                        console.log("Se llevarn el ultimo producto antes que usted")
+                    }
+
+                    connection.query("UPDATE inventory SET quantity = ? WHERE id = ?", [resp[0].quantity - newArray_Saving[i].quantity, newArray_Saving[i].product_id], (err, resp) => {
+                        if (err) return console.log(err)
+                    })
+                })
+            }
+
+            if (!validation) return res.json({message: "we dont have more this product"})
+
+            res.json({message: "Purchase made satisfactorily."})
+        })
     })
 })
 

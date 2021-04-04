@@ -6,10 +6,15 @@
     padding: 10px 5px;
     border-radius: 5px;
     font-size: 17px;
+    z-index: 10000
 }
 
 .notification__error {
     background: #e74c3c
+}
+
+.notification__success {
+    background: #2ecc71
 }
 
 .notification.active {
