@@ -87,7 +87,8 @@ const Cart = () => {
             headers: {"Content-Type": "application/json"}
         })
             .then(res => {
-                if (res.data.message !== "Congratz") return showNotification("error", `${res.data.message}: ${res.data.product}`)
+                if (res.data.message === "wtf") return showNotification("error", "You dont have product selected")
+                else if (res.data.message !== "Congratz") return showNotification("error", `${res.data.message}: ${res.data.product}`)
 
                 history.push("/purchasing-form")
 

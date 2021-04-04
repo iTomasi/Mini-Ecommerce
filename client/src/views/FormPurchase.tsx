@@ -24,6 +24,7 @@ const FormPurchase = () => {
     const [userCard_CVC, setUserCard_CVC] = useState<string>("");
     const [totalPrice, setTotalPrice] = useState<number>(0);
     const [showConfirmDatas, setShowConfirmDatas] = useState<boolean>(false);
+    const [showPurchaseCompleted, setShowPurchaseCompleted] = useState<boolean>(false);
     const [notification, setNotification] = useState<INotification>({
         type: "",
         msg: "",
@@ -92,6 +93,8 @@ const FormPurchase = () => {
             .then(res => {
                 if (res.data.message !== "Purchase made satisfactorily.") return showNotification("error", res.data.message);
 
+                setShowConfirmDatas(false);
+                setShowPurchaseCompleted(true)
                 showNotification("success", res.data.message);
 
                 setTimeout(() => {
@@ -165,6 +168,12 @@ const FormPurchase = () => {
                         <button type="submit">Purchase!</button>
                         <button type="button" onClick={() => setShowConfirmDatas(false)}>No!</button>
                     </div>
+                </div>
+            </div>
+
+            <div className="purchase-completed" style={{display: showPurchaseCompleted ? "flex" : "none"}}>
+                <div className="window">
+                    <h2>Purchase made Satisfactorily.</h2>
                 </div>
             </div>
         </form>

@@ -56,6 +56,8 @@ router.post("/validating-product/:id", (req, res) => {
 router.post("/validating-cart", (req, res) => {
     const productList = req.body.userProductsList;
 
+    if (productList[0] === undefined) return res.json({message: "wtf"})
+
     connection.query("SELECT * FROM inventory", (err, resp) => {
         if (err) return console.log(err);
 
