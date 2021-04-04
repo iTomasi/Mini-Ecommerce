@@ -22,3 +22,8 @@ ReactJS (Frontend)
     <li>React-Router-Dom (Can create multiple pages)</li>
     <li>Axios (Can do request to the backend)</li>
 </ul>
+
+
+How to use?
+
+download or clone this respository, install all modules with npm i (both folder), go to "server/src/database/database.sql" and copy that and paste in your MySQL command line or where your have MySQL (before you need create a database with CREATE DATABASE <name>), finally go to server folder and write (npm run dev or npm run build && npm start) and client folder write "npm start" with all this should work without problems
