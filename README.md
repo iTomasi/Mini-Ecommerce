@@ -1,4 +1,6 @@
-![alt text](https://i.imgur.com/USCoPJo.png)
+<p align="center">
+    <img src="https://i.imgur.com/USCoPJo.png"/>
+</p>
 
 Mini ecommerce
 
